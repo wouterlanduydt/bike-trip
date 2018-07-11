@@ -10,7 +10,7 @@ export class EtapesStore {
     cities: 4
   };
 
-  @action setEtapeStats = stats => console.log(stats);
+  @action setEtapeStats = stats => (this.etapeStats = stats);
 }
 
 export default new EtapesStore();

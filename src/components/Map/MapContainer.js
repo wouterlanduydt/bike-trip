@@ -38,12 +38,8 @@ class MapContainer extends Component {
 
   setStats(feature) {
     const { etapesStore } = this.props;
-    console.log(feature);
-    const stats = etapes.find(
-      etape => etape.id === feature && feature.properties.number
-    );
-    // console.log(stats);
-    etapesStore.setEtapeStats(stats);
+    const stats = etapes.find(etape => etape.id === feature.properties.number);
+    stats && etapesStore.setEtapeStats(stats);
   }
 
   componentDidMount() {
@@ -71,7 +67,7 @@ class MapContainer extends Component {
       tooltip.setLngLat(e.lngLat);
       map.getCanvas().style.cursor = features.length ? "pointer" : "";
       this.setTooltip(features);
-      this.setStats(features[0]);
+      features.length && this.setStats(features[0]);
     });
   }
 
