@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { inject, observer } from "mobx-react";
 import mapboxgl from "mapbox-gl";
 import Map from "./Map";
 import Tooltip from "./Tooltip";
@@ -20,9 +21,9 @@ class MapContainer extends Component {
   tooltipContainer;
 
   setTooltip(features) {
-    features.map(feature =>
-      console.log(etapes.find(etape => etape.id === feature.properties.number))
-    );
+    // features.map(feature =>
+    //   console.log(etapes.find(etape => etape.id === feature.properties.number))
+    // );
     if (features.length) {
       ReactDOM.render(
         React.createElement(Tooltip, {
@@ -33,6 +34,16 @@ class MapContainer extends Component {
     } else {
       this.tooltipContainer.innerHTML = "";
     }
+  }
+
+  setStats(feature) {
+    const { etapesStore } = this.props;
+    console.log(feature);
+    const stats = etapes.find(
+      etape => etape.id === feature && feature.properties.number
+    );
+    // console.log(stats);
+    etapesStore.setEtapeStats(stats);
   }
 
   componentDidMount() {
@@ -60,6 +71,7 @@ class MapContainer extends Component {
       tooltip.setLngLat(e.lngLat);
       map.getCanvas().style.cursor = features.length ? "pointer" : "";
       this.setTooltip(features);
+      this.setStats(features[0]);
     });
   }
 
@@ -68,4 +80,4 @@ class MapContainer extends Component {
   }
 }
 
-export default MapContainer;
+export default inject(`etapesStore`)(observer(MapContainer));

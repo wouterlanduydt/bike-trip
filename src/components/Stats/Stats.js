@@ -1,14 +1,15 @@
 import React from "react";
+import { inject, observer } from "mobx-react";
 
-const Stats = () => (
+const Stats = ({ etapesStore }) => (
   <div>
-    <h1>Kontich -> Turnhout</h1>
+    <h1>{etapesStore.etapeStats.name}</h1>
     <ul>
-      <li>55km</li>
-      <li>33 knooppunten</li>
-      <li>4 steden</li>
+      <li>{etapesStore.etapeStats.km}</li>
+      <li>{etapesStore.etapeStats.knooppunten}</li>
+      <li>{etapesStore.etapeStats.cities}</li>
     </ul>
   </div>
 );
 
-export default Stats;
+export default inject(`etapesStore`)(observer(Stats));
