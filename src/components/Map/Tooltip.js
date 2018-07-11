@@ -14,11 +14,9 @@ const Text = styled.span`
   font-weight: bold;
 `;
 
-const Tooltip = ({ features }) => (
-  <Wrapper key={features[0].properties.name}>
-    <Text>
-      Day {features[0].properties.number}. {features[0].properties.name}
-    </Text>
+const Tooltip = ({ feature }) => (
+  <Wrapper key={feature.properties.number}>
+    <Text>Etape {feature.properties.number}</Text>
   </Wrapper>
 );
 

@@ -12,7 +12,7 @@ class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lng: 5.12,
+      lng: 5.16,
       lat: 51.5,
       zoom: 7.4
     };
@@ -20,20 +20,15 @@ class MapContainer extends Component {
 
   tooltipContainer;
 
-  setTooltip(features) {
-    // features.map(feature =>
-    //   console.log(etapes.find(etape => etape.id === feature.properties.number))
-    // );
-    if (features.length) {
-      ReactDOM.render(
-        React.createElement(Tooltip, {
-          features
-        }),
-        this.tooltipContainer
-      );
-    } else {
-      this.tooltipContainer.innerHTML = "";
-    }
+  setTooltip(feature) {
+    feature
+      ? ReactDOM.render(
+          React.createElement(Tooltip, {
+            feature
+          }),
+          this.tooltipContainer
+        )
+      : (this.tooltipContainer.innerHTML = "");
   }
 
   setStats(feature) {
@@ -66,7 +61,13 @@ class MapContainer extends Component {
       });
       tooltip.setLngLat(e.lngLat);
       map.getCanvas().style.cursor = features.length ? "pointer" : "";
-      this.setTooltip(features);
+      this.setTooltip(features[0]);
+    });
+
+    map.on("click", e => {
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: ["day_01", "day_02", "day_03", "day_04", "day_05", "day_06"]
+      });
       features.length && this.setStats(features[0]);
     });
   }
