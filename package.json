@@ -2,7 +2,8 @@
   "name": "basic",
   "version": "0.0.0",
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "react-scripts": "^1.0.10"

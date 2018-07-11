@@ -48,7 +48,7 @@ class MapContainer extends Component {
     });
 
     const tooltip = new mapboxgl.Marker(this.tooltipContainer, {
-      offset: [0, 0]
+      offset: [0, 30]
     })
       .setLngLat([0, 0])
       .addTo(map);
