@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import mapboxgl from "mapbox-gl";
 import Map from "./Map";
 import Tooltip from "./Tooltip";
+import etapes from "../../assets/data/etapes";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -19,8 +20,8 @@ class MapContainer extends Component {
   tooltipContainer;
 
   setTooltip(features) {
-    features.map(
-      feature => feature.layer.id.startsWith("day") && console.log(feature)
+    features.map(feature =>
+      console.log(etapes.find(etape => etape.id === feature.properties.number))
     );
     if (features.length) {
       ReactDOM.render(
@@ -37,7 +38,6 @@ class MapContainer extends Component {
   componentDidMount() {
     const { lng, lat, zoom } = this.state;
 
-    // Container to put React generated content in.
     this.tooltipContainer = document.createElement("div");
 
     const map = new mapboxgl.Map({
@@ -47,16 +47,6 @@ class MapContainer extends Component {
       zoom
     });
 
-    map.on("move", () => {
-      const { lng, lat } = map.getCenter();
-
-      this.setState({
-        lng: lng.toFixed(4),
-        lat: lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
-      });
-    });
-
     const tooltip = new mapboxgl.Marker(this.tooltipContainer, {
       offset: [0, 0]
     })
@@ -64,7 +54,9 @@ class MapContainer extends Component {
       .addTo(map);
 
     map.on("mousemove", e => {
-      const features = map.queryRenderedFeatures(e.point);
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: ["day_01", "day_02", "day_03", "day_04", "day_05", "day_06"]
+      });
       tooltip.setLngLat(e.lngLat);
       map.getCanvas().style.cursor = features.length ? "pointer" : "";
       this.setTooltip(features);

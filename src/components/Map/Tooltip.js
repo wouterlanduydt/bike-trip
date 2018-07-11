@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   background-color: black;
   padding: 8px 16px;
   border-radius: 4px;
+  cursor: none;
 `;
 
 const Text = styled.span`
@@ -14,18 +15,11 @@ const Text = styled.span`
 `;
 
 const Tooltip = ({ features }) => (
-  <div>
-    {features.map(
-      feature =>
-        feature.layer.id.startsWith("day") && (
-          <Wrapper key={feature.properties.name}>
-            <Text>
-              Day {feature.properties.number}. {feature.properties.name}
-            </Text>
-          </Wrapper>
-        )
-    )}
-  </div>
+  <Wrapper key={features[0].properties.name}>
+    <Text>
+      Day {features[0].properties.number}. {features[0].properties.name}
+    </Text>
+  </Wrapper>
 );
 
 export default Tooltip;
