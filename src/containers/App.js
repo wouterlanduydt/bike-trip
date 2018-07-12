@@ -15,6 +15,7 @@ injectGlobal`
 
   body {
     font-size: 62.5%;
+    font-family: Helvetica, sans-serif;
   }
 `;
 
