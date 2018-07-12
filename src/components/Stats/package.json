@@ -2,5 +2,5 @@
   "name": "stats",
   "version": "0.0.0",
   "private": true,
-  "main": "./StatsContainer.js"
+  "main": "./Stats.js"
 }

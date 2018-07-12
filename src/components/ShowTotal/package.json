@@ -1,0 +1,6 @@
+{
+  "name": "show-total",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ShowTotal.js"
+}

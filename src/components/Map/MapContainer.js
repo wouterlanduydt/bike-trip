@@ -4,7 +4,6 @@ import { inject, observer } from "mobx-react";
 import mapboxgl from "mapbox-gl";
 import Map from "./Map";
 import Tooltip from "./Tooltip";
-import etapes from "../../assets/data/etapes";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -33,8 +32,11 @@ class MapContainer extends Component {
 
   setStats(feature) {
     const { etapesStore } = this.props;
-    const stats = etapes.find(etape => etape.id === feature.properties.number);
-    stats && etapesStore.setEtapeStats(stats);
+    const { etapesData, setEtapeStats } = etapesStore;
+    const stats = etapesData.find(
+      etape => etape.id === feature.properties.number
+    );
+    stats && setEtapeStats(stats);
   }
 
   componentDidMount() {

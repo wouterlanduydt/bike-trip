@@ -42,6 +42,7 @@
     "react": "^15.5.0",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^15.5.0",
+    "react-twemoji": "^0.0.8",
     "resolve": "1.6.0",
     "style-loader": "0.19.0",
     "styled-components": "^3.3.3",

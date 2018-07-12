@@ -4,6 +4,7 @@ import { Provider } from "mobx-react";
 import reset from "styled-reset";
 import Map from "../components/Map";
 import Stats from "../components/Stats";
+import ShowTotal from "../components/ShowTotal";
 import etapesStore from "../stores/etapesStore";
 
 injectGlobal`
@@ -28,6 +29,7 @@ const App = () => (
     <div>
       <Map />
       <Stats />
+      <ShowTotal />
     </div>
   </Provider>
 );
