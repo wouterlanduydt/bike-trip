@@ -11,12 +11,12 @@ export class EtapesStore {
     return this.etapesData.reduce((prev, cur) => ({
       name: "Totaal",
       km: Math.round((prev.km + cur.km) * 100) / 100,
-      knooppunten: prev.knooppunten + cur.knooppunten,
-      cities: prev.cities + cur.cities
+      knooppunten: prev.knooppunten + cur.knooppunten
     }));
   }
 
   @action setEtapeStats = stats => (this.etapeStats = stats);
+
   @action showTotal = () => (this.etapeStats = this.total);
 }
 

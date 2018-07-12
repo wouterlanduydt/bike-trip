@@ -11,9 +11,21 @@ const Wrapper = styled.div`
   height: 20vh;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Day = styled.span`
+  font-size: 1.2em;
+  margin-bottom: 2px;
+`;
+
 const Title = styled.h2`
   font-size: 2em;
   font-weight: bold;
+  height: 20px;
   margin-bottom: 4vw;
 `;
 
@@ -29,7 +41,7 @@ const StyledTwemoji = styled(Twemoji)`
 const List = styled.ul`
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 60%;
 `;
 
 const ListItem = styled.li`
@@ -45,14 +57,26 @@ const StatNumber = styled.span`
 `;
 
 const StatTitle = styled.span`
+  margin-top: 2px;
   font-size: 1.4em;
 `;
 
+const isTotalSelected = store => {
+  return (
+    store.etapeStats.name !== "Totaal" && store.etapeStats.name !== undefined
+  );
+};
+
 const Stats = ({ etapesStore }) => (
   <Wrapper>
-    <StyledTwemoji options={{ className: "twemoji" }}>
-      <Title>{etapesStore.etapeStats.name || etapesStore.total.name}</Title>
-    </StyledTwemoji>
+    {isTotalSelected(etapesStore) && (
+      <TitleWrapper>
+        <Day>- Dag {etapesStore.etapeStats.id} -</Day>
+        <StyledTwemoji options={{ className: "twemoji" }}>
+          <Title>{etapesStore.etapeStats.name || etapesStore.total.name}</Title>
+        </StyledTwemoji>
+      </TitleWrapper>
+    )}
     <List>
       <ListItem>
         <StatNumber>
@@ -60,17 +84,11 @@ const Stats = ({ etapesStore }) => (
         </StatNumber>
         <StatTitle>kilometer</StatTitle>
       </ListItem>
-      <ListItem className="center">
+      <ListItem>
         <StatNumber>
           {etapesStore.etapeStats.knooppunten || etapesStore.total.knooppunten}
         </StatNumber>
         <StatTitle>knooppunten</StatTitle>
-      </ListItem>
-      <ListItem>
-        <StatNumber>
-          {etapesStore.etapeStats.cities || etapesStore.total.cities}
-        </StatNumber>
-        <StatTitle>steden</StatTitle>
       </ListItem>
     </List>
   </Wrapper>

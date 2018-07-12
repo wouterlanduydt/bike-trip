@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Button = styled.button`
   position: fixed;
+  z-index: 99;
   top: 16px;
   left: 16px;
   border: none;
@@ -16,15 +17,15 @@ const Button = styled.button`
   cursor: ${props => (props.disabled ? "default" : "pointer")};
 `;
 
-const ShowTotal = ({ etapesStore }) => (
+const ShowTotal = ({ etapesStore, onClick }) => (
   <Button
-    onClick={() => etapesStore.showTotal()}
+    onClick={onClick}
     disabled={
       etapesStore.etapeStats.name === "Totaal" ||
       etapesStore.etapeStats.name === undefined
     }
   >
-    Toon Totaal
+    Totaal
   </Button>
 );
 

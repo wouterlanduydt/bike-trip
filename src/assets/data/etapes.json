@@ -3,42 +3,36 @@
     "id": 1,
     "name": "Kontich 🚲 Turnhout",
     "knooppunten": 27,
-    "km": 58.2,
-    "cities": 0
+    "km": 58.2
   },
   {
     "id": 2,
     "name": "Turnhout 🚲 Eindhoven",
     "knooppunten": 41,
-    "km": 77.1,
-    "cities": 0
+    "km": 77.1
   },
   {
     "id": 3,
     "name": "Eindhoven 🚲 Nijmegen",
     "knooppunten": 44,
-    "km": 83.5,
-    "cities": 0
+    "km": 83.5
   },
   {
     "id": 4,
     "name": "Nijmegen 🚲 Den Dungen",
     "knooppunten": 45,
-    "km": 70.4,
-    "cities": 0
+    "km": 70.4
   },
   {
     "id": 5,
     "name": "Den Dungen 🚲 Breda",
     "knooppunten": 33,
-    "km": 73.2,
-    "cities": 0
+    "km": 73.2
   },
   {
     "id": 6,
     "name": "Breda 🚲 Kontich",
     "knooppunten": 30,
-    "km": 74,
-    "cities": 0
+    "km": 74
   }
 ]
